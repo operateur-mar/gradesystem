@@ -32,3 +32,7 @@ select#grade optgroup {
   padding: 10px;
   min-height: 40px;
 }
+.modalcomponent{
+    height: 80vh;
+    font-family: 'Rubik', sans-serif;
+}

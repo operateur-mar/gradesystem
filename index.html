@@ -217,7 +217,11 @@
             class="text-sm text-green-600 hover:underline focus:outline-none">
             التفاصيل
            </button></td>
-          <td class="px-4 py-2 text-gray-700"><button>الحذف</button></td>
+           <td class="px-4 py-2 text-gray-700"> <button
+             @click="deleteuser(index)"
+            class="text-sm text-green-600 hover:underline focus:outline-none">
+            حذف
+           </button></td>
         </tr>
       </tbody>
     </table>
@@ -227,23 +231,42 @@
    v-if="modalOpen"
    @click.self="closeModal"    @keydown.escape.window="closeModal"
    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"  >
-    <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+    <div class="modalcomponent bg-white rounded-2xl shadow-2xl max-w-3xl w-full p-6 relative overflow-y-auto max-h-[80vh]">
       <button
          @click="closeModal"
          class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 focus:outline-none"
       >
          &times;
       </button>
-      <h3 class="text-xl font-semibold mb-4 text-gray-800">تفاصيل المستخدم</h3>
-      <p class="mb-2"><strong>الاسم:</strong> {{ modalUser.name }}</p>
+      <h3 class="text-xl font-semibold mb-4 text-gray-800 text-center p-4">تفاصيل الموظف</h3>
+      <p class="mb-2"><strong class="ml-2">الاسم:</strong> {{ modalUser.name }}</p>
       <p class="mb-2"><strong>الوظيفة:</strong> {{ modalUser.title }}</p>
       <p class="mb-2"><strong>تاريخ التسجيل:</strong> {{ modalUser.dateSignIn }}</p>
       <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-800">مسار الترقية:</h4>
-      <ul class="list-disc list-inside">
-         <li v-for="(grade, idx) in modalUser.gradingpath" :key="idx">
-            {{ grade.level }} - {{ grade.dateLevel }}
-         </li>
-      </ul> 
+      <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden mt-4">
+  <thead class="bg-gray-100">
+    <tr>
+      <th class="px-4 py-2 text-right text-gray-700">الرتبة</th>
+      <th class="px-4 py-2 text-right text-gray-700">تاريخ الترقية</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr 
+      v-for="(grade, idx) in modalUser.gradingpath" 
+      :key="idx"
+      :class="idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
+      class="hover:bg-green-50 transition"
+    >
+      <td class="px-4 py-2 text-gray-800">{{ grade.level }}</td>
+      <td class="px-4 py-2 text-gray-700">{{ grade.dateLevel }}</td>
+    </tr>
+
+    <!-- Optional: Empty state -->
+    <tr v-if="!modalUser.gradingpath || modalUser.gradingpath.length === 0">
+      <td colspan="2" class="text-center text-gray-500 py-3">لا توجد بيانات حالياً</td>
+    </tr>
+  </tbody>
+</table>
       <button
          @click="sendEmail"
          class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:outline-none"

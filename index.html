@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/styles/styles.css">
+    <title>system de grade</title>
+    
+</head>
+<body class="bg-gray-100">
+    <div id="app" class="container mx-auto ">
+       <!-- Big Tab-->
+       <div class="bg-white shadow p-4">
+         <div class="flex items-center justify-between">
+           <div class="flex space-x-2" role="tablist" aria-label="Main tabs">
+             <button
+               v-for="tab in tabs"
+               :key="tab.name"
+               @click="activeTab = tab.name"
+               :aria-selected="activeTab === tab.name"
+               :class="[
+                 'px-6 py-3 ml-5 mr-5 rounded-lg font-semibold transition focus:outline-none tabbtn',
+                 activeTab === tab.name ? 'bg-green-600 text-white shadow-md' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+               ]"
+             >
+               {{ tab.label }}
+             </button>
+           </div>
+         </div>
+       </div>
+       <!-- ./ Big Tab-->
+
+       <!-- Tab content -->
+       <div class="mt-3 p-6">
+        <!-- TAB ONE-->
+         <div v-show="activeTab === 'tabone'" class="bg-white rounded-lg shadow p-6">
+           <h2 class="text-xl font-bold">إضافة جديد</h2>
+          <form class=" w-full formsection" @submit.prevent="addUser">
+
+  <!-- First row -->
+  <!--<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+    <div>
+      <label for="name" class="block text-gray-700 mb-1">الاسم الكامل</label>
+      <input id="name" type="text" placeholder=""
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+    </div>
+
+    <div>
+      <label for="email" class="block text-gray-700 mb-1">Email</label>
+      <input id="email" type="email" placeholder="Enter your email"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+    </div>
+
+    <div>
+      <label for="phone" class="block text-gray-700 mb-1">Phone</label>
+      <input id="phone" type="tel" placeholder="Enter your phone"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+    </div>
+  </div> -->
+
+  <!-- Second row -->
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+    <div>
+      <label for="subject" class="block text-gray-700 mb-1">الاسم الكامل:</label>
+      <input id="subject" type="text" v-model="newUser.name"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+    </div>
+
+    <div>
+  <label for="grade" class="block text-gray-700 mb-1">السلم والإطار:</label>
+  <select
+  id="grade"
+  @change="newUser.title = $event.target.options[$event.target.selectedIndex].text" 
+  v-model="newUser.grade"
+  class="w-full border border-gray-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-green-500 leading-relaxed"
+>
+    
+    <!-- Group 1 -->
+    <optgroup label="السلم 6">
+      <option value="ech6-1"> مساعد تقني وإداري من الدرجة الثالثة</option>
+    
+    </optgroup>
+
+    <!-- Group 2 -->
+    <optgroup label="السلم 7 ">
+      <option value="ech7-1"> مساعد تقني وإداري من الدرجة الثانية</option>
+    </optgroup>
+
+    <!-- Group 3 -->
+   <optgroup label="السلم 8 ">
+      <option value="ech8-1"> مساعد تقني وإداري من الدرجة الأولى</option>
+      <option value="ech8-2"> تقني من الدرجة الرابعة</option>
+      <option value="ech8-3"> محرر من الدرجة الرابعة</option>
+    </optgroup>
+
+    <!-- Group 4 -->
+   <optgroup label="السلم 9 ">
+      <option value="ech9-1">تقني و محرر من الدرجة الثالثة</option>
+      <option value="ech9-2"> ممرض مجاز من الدرجة الثانية</option>
+    </optgroup>
+
+      <!-- Group 5 -->
+      <optgroup label="السلم 10 ">
+      <option value="ech10-1">تقني و محرر من الدرجة الثانية</option>
+      <option value="ech10-2"> متصرف من الدرجة الثالثة</option>
+      <option value="ech10-3"> ممرض مجاز من الدرجة الأولى</option>
+      <option value="ech10-4"> مهندس التطبيق من الدرجة الأولى</option>
+      <option value="ech10-5"> مهندس التطبيق من الدرجة الممتازة</option>
+      <option value="ech10-6">متصرف مساعد</option>
+    </optgroup>
+
+      <!-- Group 6 -->
+      <optgroup label="السلم 11 ">
+      <option value="ech11-1">تقني من الدرجة الأولى</option>
+      <option value="ech11-2"> محرر من الدرجة الأولى</option>
+      <option value="ech11-3"> ممرض مجاز من الدرجة الممتازة</option>
+      <option value="ech11-4"> متصرف من الدرجة الثانية</option>
+      <option value="ech11-5"> متصرف</option>
+      <option value="ech11-6">مهندس دولة من الدرجة الأولى</option>
+      <option value="ech11-7">مهندس معماري من الدرجة الأولى</option>
+      <option value="ech11-8">مهندس دولة من الدرجة الممتازة</option>
+      <option value="ech11-9">مهندس معماري من الدرجة الممتازة</option>
+      <option value="ech11-10">طبيب بيطري من الدرجة الأولى</option>
+      <option value="ech11-11">طبيب من الدرجة الأولى</option>
+
+    </optgroup>
+ <!-- Group 7 -->
+      <optgroup label="السلم 12 ">
+      <option value="ech12-1">متصرف ممتاز</option>
+      <option value="ech12-2"> متصرف من الدرجة الأولى</option>
+      <option value="ech12-3"> طبيب بيطري خارج الدرجة</option>
+      <option value="ech12-4"> طبيب من الدرجة الممتازة</option>
+      <option value="ech12-5"> طبيب بيطري من الدرجة الممتازة</option>
+      <option value="ech12-6">طبيب من الدرجة الاستثنائية</option>
+      <option value="ech12-7">طبيب بيطري من الدرجة الاستثنائية</option>
+      <option value="ech12-8">مهندس رئيس من الدرجة الممتازة</option>
+      <option value="ech12-9">مهندس معماري رئيس من الدرجة الأولى</option>
+      
+
+    </optgroup>
+  </select>
+</div>
+
+
+    <div>
+      <label for="country" class="block text-gray-700 mb-1">تاريخ التسجيل:</label>
+      <input id="country" type="date" placeholder=""
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" v-model="newUser.dateSignIn">
+    </div>
+  </div>
+
+  <!-- Third row -->
+  <!--<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+    <div>
+      <label for="name" class="block text-gray-700 mb-1">الاسم الكامل</label>
+      <input id="name" type="text" placeholder=""
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+    </div>
+
+    <div>
+      <label for="email" class="block text-gray-700 mb-1">Email</label>
+      <input id="email" type="email" placeholder="Enter your email"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+    </div>
+
+    <div>
+      <label for="phone" class="block text-gray-700 mb-1">Phone</label>
+      <input id="phone" type="tel" placeholder="Enter your phone"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+    </div>
+  </div> -->
+
+  <!-- Submit -->
+  <div class="center flex justify-center">
+     <button type="submit"
+    class=" bg-green-600 p-4 text-white font-medium py-2 rounded-lg hover:bg-green-700 transition">
+   إضافة 
+  </button>
+  </div>
+</form>
+
+           
+
+         </div>
+        <!-- TAB TWO-->
+         <div v-show="activeTab === 'tabtwo'" class="bg-white rounded-lg shadow p-6">
+         <div class="p-6">
+    <h2 class="text-xl font-semibold mb-4 text-gray-800">قائمة المستخدمين</h2>
+
+    <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-right text-gray-700">الاسم</th>
+          <th class="px-4 py-2 text-right text-gray-700">الوظيفة</th>
+          <th class="px-4 py-2 text-right text-gray-700">تاريخ التسجيل</th>
+          <th class="px-4 py-2 text-right text-gray-700">الرتبة الحالية</th>
+          <th class="px-4 py-2 text-right text-gray-700">تاريخ الترقية القادمة</th>
+          <th class="px-4 py-2 text-right text-gray-700">التفاصيل</th>
+          <th class="px-4 py-2 text-right text-gray-700">الحذف</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr 
+          v-for="(user, index) in users" 
+          :key="index"
+          :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'" 
+          class="hover:bg-green-50 transition"
+        >
+          <td class="px-4 py-2 text-gray-800">{{ user.name }}</td>
+          <td class="px-4 py-2 text-gray-700">{{ user.title }}</td>
+          <td class="px-4 py-2 text-gray-600">{{ user.dateSignIn }}</td>
+          <td class="px-4 py-2 text-gray-600">{{user.gradingpath && user.gradingpath.length > 0 ? user.gradingpath[0].level : '' }}</td>
+          <td class="px-4 py-2 text-gray-600">{{user.gradingpath && user.gradingpath.length > 0 ? user.gradingpath[0].dateLevel : '' }}</td>
+          <td class="px-4 py-2 text-gray-700"> <button
+             @click="openDetails(user)"
+            class="text-sm text-green-600 hover:underline focus:outline-none">
+            التفاصيل
+           </button></td>
+          <td class="px-4 py-2 text-gray-700"><button>الحذف</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- Details modal -->
+<div
+   v-if="modalOpen"
+   @click.self="closeModal"    @keydown.escape.window="closeModal"
+   class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"  >
+    <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6 relative">
+      <button
+         @click="closeModal"
+         class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 focus:outline-none"
+      >
+         &times;
+      </button>
+      <h3 class="text-xl font-semibold mb-4 text-gray-800">تفاصيل المستخدم</h3>
+      <p class="mb-2"><strong>الاسم:</strong> {{ modalUser.name }}</p>
+      <p class="mb-2"><strong>الوظيفة:</strong> {{ modalUser.title }}</p>
+      <p class="mb-2"><strong>تاريخ التسجيل:</strong> {{ modalUser.dateSignIn }}</p>
+      <h4 class="text-lg font-semibold mt-4 mb-2 text-gray-800">مسار الترقية:</h4>
+      <ul class="list-disc list-inside">
+         <li v-for="(grade, idx) in modalUser.gradingpath" :key="idx">
+            {{ grade.level }} - {{ grade.dateLevel }}
+         </li>
+      </ul> 
+      <button
+         @click="sendEmail"
+         class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 focus:outline-none"
+      >
+        إرسال
+      </button>
+</div>
+
+       
+       <!-- ./ Big Tab-->
+    </div>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script src="./src/main.js"></script>
+</body>
+</html>

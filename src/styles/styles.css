@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body{
+    font-family: 'Rubik', sans-serif;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+    overflow-y: auto;
+}
+.tabbtn{
+    font-family: 'Rubik', sans-serif;
+}
+h2{
+     font-family: 'Rubik', sans-serif;
+}
+.formsection{
+    font-family: 'Rubik', sans-serif;
+    margin-top: 50px;
+}
+select#grade option,
+select#grade optgroup {
+  padding: 8px 12px;
+  line-height: 1.6;
+}
+
+select#grade optgroup {
+  font-weight: 600;
+  padding-top: 12px;
+  padding-bottom: 4px;
+}
+
+#grade option {
+  padding: 10px;
+  min-height: 40px;
+}

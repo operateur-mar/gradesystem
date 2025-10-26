@@ -56,17 +56,18 @@ createApp({
         switch (this.newUser.grade) {
           case "ech6-1":
             this.newUser.gradingpath.push(
-              { level: "الرتبة 1", dateLevel: this.dateSetter(dateSignIn, 24) },
-              { level: "الرتبة 2", dateLevel: this.dateSetter(dateSignIn, 36) },
-              { level: "الرتبة 3", dateLevel: this.dateSetter(dateSignIn, 48) },
-              { level: "الرتبة 4", dateLevel: this.dateSetter(dateSignIn, 72) },
-              { level: "الرتبة 5", dateLevel: this.dateSetter(dateSignIn, 96) },
-              { level: "الرتبة 6", dateLevel: this.dateSetter(dateSignIn, 120) },
-              { level: "الرتبة 7", dateLevel: this.dateSetter(dateSignIn, 144) },
-              { level: "الرتبة 8", dateLevel: this.dateSetter(dateSignIn, 180) },
-              { level: "الرتبة 9", dateLevel: this.dateSetter(dateSignIn, 216) },
-              { level: "الرتبة 10", dateLevel: this.dateSetter(dateSignIn, 252) },
-              { level: "EXP", dateLevel: this.dateSetter(dateSignIn, 288) }
+              { level: "الرتبة 1", dateLevel: this.dateSetter(dateSignIn, 0) },
+              { level: "الرتبة 2", dateLevel: this.dateSetter(dateSignIn, 24) },
+              { level: "الرتبة 3", dateLevel: this.dateSetter(dateSignIn, 36) },
+              { level: "الرتبة 4", dateLevel: this.dateSetter(dateSignIn, 48) },
+              { level: "الرتبة 5", dateLevel: this.dateSetter(dateSignIn, 72) },
+              { level: "الرتبة 6", dateLevel: this.dateSetter(dateSignIn, 96) },
+              { level: "الرتبة 7", dateLevel: this.dateSetter(dateSignIn, 120) },
+              { level: "الرتبة 8", dateLevel: this.dateSetter(dateSignIn, 144) },
+              { level: "الرتبة 9", dateLevel: this.dateSetter(dateSignIn, 180) },
+              { level: "الرتبة 10", dateLevel: this.dateSetter(dateSignIn, 216) },
+              { level: "الرتبة EXP", dateLevel: this.dateSetter(dateSignIn, 252) },
+              //{ level: "EXP", dateLevel: this.dateSetter(dateSignIn, 288) }
             );
             break;
         }
